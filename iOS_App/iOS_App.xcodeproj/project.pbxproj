@@ -12,6 +12,8 @@
 		18158EEE1C5B1A8B00E300B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18158EEC1C5B1A8B00E300B6 /* Main.storyboard */; };
 		18158EF01C5B1A8B00E300B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18158EEF1C5B1A8B00E300B6 /* Assets.xcassets */; };
 		18158EF31C5B1A8B00E300B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18158EF11C5B1A8B00E300B6 /* LaunchScreen.storyboard */; };
+		1821EDF31C5BE9BC0005F7E2 /* RemoteSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821EDF21C5BE9BC0005F7E2 /* RemoteSender.m */; };
+		1821EDF71C5BEB790005F7E2 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821EDF61C5BEB790005F7E2 /* GCDAsyncSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,11 @@
 		18158EEF1C5B1A8B00E300B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18158EF21C5B1A8B00E300B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18158EF41C5B1A8B00E300B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1821EDEC1C5BDF160005F7E2 /* ObjC-Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridge.h"; sourceTree = "<group>"; };
+		1821EDF11C5BE9BC0005F7E2 /* RemoteSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteSender.h; sourceTree = "<group>"; };
+		1821EDF21C5BE9BC0005F7E2 /* RemoteSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteSender.m; sourceTree = "<group>"; };
+		1821EDF51C5BEB790005F7E2 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		1821EDF61C5BEB790005F7E2 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +61,27 @@
 		18158EE71C5B1A8B00E300B6 /* iOS_App */ = {
 			isa = PBXGroup;
 			children = (
+				1821EDF41C5BEB440005F7E2 /* RemoteSender */,
 				18158EE81C5B1A8B00E300B6 /* AppDelegate.swift */,
 				18158EEA1C5B1A8B00E300B6 /* ViewController.swift */,
 				18158EEC1C5B1A8B00E300B6 /* Main.storyboard */,
 				18158EEF1C5B1A8B00E300B6 /* Assets.xcassets */,
 				18158EF11C5B1A8B00E300B6 /* LaunchScreen.storyboard */,
 				18158EF41C5B1A8B00E300B6 /* Info.plist */,
+				1821EDEC1C5BDF160005F7E2 /* ObjC-Bridge.h */,
 			);
 			path = iOS_App;
+			sourceTree = "<group>";
+		};
+		1821EDF41C5BEB440005F7E2 /* RemoteSender */ = {
+			isa = PBXGroup;
+			children = (
+				1821EDF51C5BEB790005F7E2 /* GCDAsyncSocket.h */,
+				1821EDF61C5BEB790005F7E2 /* GCDAsyncSocket.m */,
+				1821EDF11C5BE9BC0005F7E2 /* RemoteSender.h */,
+				1821EDF21C5BE9BC0005F7E2 /* RemoteSender.m */,
+			);
+			name = RemoteSender;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1821EDF71C5BEB790005F7E2 /* GCDAsyncSocket.m in Sources */,
 				18158EEB1C5B1A8B00E300B6 /* ViewController.swift in Sources */,
+				1821EDF31C5BE9BC0005F7E2 /* RemoteSender.m in Sources */,
 				18158EE91C5B1A8B00E300B6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +275,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.psg.iOS-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "iOS_App/ObjC-Bridge.h";
 			};
 			name = Debug;
 		};
@@ -264,6 +287,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.psg.iOS-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "iOS_App/ObjC-Bridge.h";
 			};
 			name = Release;
 		};
@@ -286,6 +310,7 @@
 				18158EF91C5B1A8B00E300B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
