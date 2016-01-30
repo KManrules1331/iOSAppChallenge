@@ -14,6 +14,9 @@
 		18158F0F1C5B1AAA00E300B6 /* Game.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18158F0E1C5B1AAA00E300B6 /* Game.xcassets */; };
 		18158F121C5B1AAA00E300B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18158F101C5B1AAA00E300B6 /* Main.storyboard */; };
 		18158F141C5B1AAA00E300B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18158F131C5B1AAA00E300B6 /* Assets.xcassets */; };
+		1821EDF91C5C46A60005F7E2 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821EDF81C5C46A60005F7E2 /* Enemy.swift */; };
+		1821EDFB1C5C4CD90005F7E2 /* Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821EDFA1C5C4CD90005F7E2 /* Angle.swift */; };
+		1821EDFD1C5C60C60005F7E2 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821EDFC1C5C60C60005F7E2 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		18158F111C5B1AAA00E300B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18158F131C5B1AAA00E300B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18158F151C5B1AAA00E300B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1821EDF81C5C46A60005F7E2 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		1821EDFA1C5C4CD90005F7E2 /* Angle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Angle.swift; sourceTree = "<group>"; };
+		1821EDFC1C5C60C60005F7E2 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,9 @@
 				18158F101C5B1AAA00E300B6 /* Main.storyboard */,
 				18158F131C5B1AAA00E300B6 /* Assets.xcassets */,
 				18158F151C5B1AAA00E300B6 /* Info.plist */,
+				1821EDF81C5C46A60005F7E2 /* Enemy.swift */,
+				1821EDFA1C5C4CD90005F7E2 /* Angle.swift */,
+				1821EDFC1C5C60C60005F7E2 /* Player.swift */,
 			);
 			path = tvOS_App;
 			sourceTree = "<group>";
@@ -142,8 +151,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1821EDF91C5C46A60005F7E2 /* Enemy.swift in Sources */,
+				1821EDFB1C5C4CD90005F7E2 /* Angle.swift in Sources */,
 				18158F0B1C5B1AAA00E300B6 /* GameScene.swift in Sources */,
 				18158F0D1C5B1AAA00E300B6 /* GameViewController.swift in Sources */,
+				1821EDFD1C5C60C60005F7E2 /* Player.swift in Sources */,
 				18158F071C5B1AAA00E300B6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +298,7 @@
 				18158F1A1C5B1AAA00E300B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
