@@ -19,10 +19,33 @@ class Player {
             return health > 0;
         }
     }
-    
-    init(health: Int, attackStrength: Int)
+    var Health : Int
     {
-        self.health = health;
-        self.attackStrength = attackStrength;
+        get
+        {
+            return health;
+        }
+    }
+    var AttackStrength : Int
+    {
+        get
+        {
+            return attackStrength;
+        }
+        set(value)
+        {
+            attackStrength = value;
+        }
+    }
+    
+    init(data: PlayerData)
+    {
+        self.health = data.health;
+        self.attackStrength = data.attackStrength;
+    }
+    
+    func damage(dmg: Int)
+    {
+        health -= dmg;
     }
 }

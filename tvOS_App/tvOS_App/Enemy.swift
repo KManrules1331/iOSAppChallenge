@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Enemy
 {
@@ -28,18 +29,29 @@ class Enemy
     private var attackInterval : Double;
     private var weaknessAngle : Angle;
     private var marginOfError : Angle;
+    private var sprite : SKSpriteNode;
+    
+    private var width = CGFloat(100);
+    private var height = CGFloat(100);
     
     private var attackTimer : CFTimeInterval;
     
-    init(health: Int, attack: Int, attackInterval: Double, weaknessAngle: Angle, marginOfError: Angle)
+    init(data: EnemyData, position: CGPoint, scene: SKScene)
     {
-        self.health = health;
-        self.attack = attack;
-        self.attackInterval = attackInterval;
-        self.weaknessAngle = weaknessAngle;
-        self.marginOfError = marginOfError;
+        self.sprite = SKSpriteNode(imageNamed: data.imageName)
+        
+        self.sprite.position = position;
+        self.sprite.xScale = width / self.sprite.frame.width;
+        self.sprite.yScale = height / self.sprite.frame.height;
+        self.health = data.health;
+        self.attack = data.attack;
+        self.attackInterval = data.attackInterval;
+        self.weaknessAngle = data.weaknessAngle;
+        self.marginOfError = data.marginOfError;
         
         self.attackTimer = 0.0;
+        
+        scene.addChild(self.sprite);
     }
     
     func update(deltaTime: CFTimeInterval) -> Void

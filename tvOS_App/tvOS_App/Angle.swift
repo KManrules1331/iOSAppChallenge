@@ -30,7 +30,7 @@ class Angle {
         {
             self.value -= 2 * M_PI;
         }
-        while (self.value < M_PI)
+        while (self.value < -M_PI)
         {
             self.value += 2 * M_PI;
         }

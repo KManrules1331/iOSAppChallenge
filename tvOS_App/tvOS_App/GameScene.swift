@@ -20,8 +20,10 @@ class GameScene: SKScene {
         myLabel.fontSize = 65
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         
-        player = Player(health: 0, attackStrength: 0);
-        enemy = Enemy(health: 0, attack: 0, attackInterval: 0.0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: 0.0));
+        let playerData = PlayerData(health: 0, attackStrength: 0);
+        player = Player(data: playerData);
+        let enemyData = EnemyData(health: 0, attack: 0, attackInterval: 0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: 0.0), imageName: "enemy");
+        enemy = Enemy(data: enemyData, position: CGPointMake(size.width / 2, size.height / 2), scene: self);
         
         self.addChild(myLabel)
     }
