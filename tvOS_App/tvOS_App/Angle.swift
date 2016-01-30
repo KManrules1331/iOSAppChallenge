@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Angle {
+class Angle{
     var Value : Double
     {
         get
@@ -57,4 +57,9 @@ func >(lhs: Angle, rhs: Angle) -> Bool
 func <(lhs: Angle, rhs: Angle) -> Bool
 {
     return ((lhs.Value < rhs.Value && lhs.Value > rhs.Value - M_PI) || lhs.Value < rhs.Value + M_PI);
+}
+
+func ==(lhs: Angle, rhs: Angle) -> Bool
+{
+    return lhs.Value == rhs.Value;
 }

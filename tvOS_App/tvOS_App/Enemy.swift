@@ -59,6 +59,11 @@ class Enemy
         attackTimer += deltaTime;
     }
     
+    func damage (dmg: Int)
+    {
+        health -= dmg;
+    }
+    
     func didHit(angle: Angle) -> Bool
     {
         let maxAngle = weaknessAngle + marginOfError;
