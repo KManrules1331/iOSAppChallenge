@@ -9,12 +9,21 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    
+    var enemy : Enemy!
+    var player : Player!
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
         myLabel.text = "Hello, World!"
         myLabel.fontSize = 65
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+        
+        let playerData = PlayerData(health: 0, attackStrength: 0);
+        player = Player(data: playerData);
+        let enemyData = EnemyData(health: 0, attack: 0, attackInterval: 0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: 0.0), imageName: "enemy");
+        enemy = Enemy(data: enemyData, position: CGPointMake(size.width / 2, size.height / 2), scene: self);
         
         self.addChild(myLabel)
     }
@@ -41,5 +50,11 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        if !player.isAlive
+        {
+            //Go to game over screen
+        }
+        
+        
     }
 }
