@@ -14,6 +14,8 @@
 		18158EF31C5B1A8B00E300B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18158EF11C5B1A8B00E300B6 /* LaunchScreen.storyboard */; };
 		1821EDF31C5BE9BC0005F7E2 /* RemoteSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821EDF21C5BE9BC0005F7E2 /* RemoteSender.m */; };
 		1821EDF71C5BEB790005F7E2 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821EDF61C5BEB790005F7E2 /* GCDAsyncSocket.m */; };
+		186BD9F41C5E922900127248 /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186BD9F31C5E922900127248 /* MainMenuVC.swift */; };
+		186BD9F61C5E925400127248 /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186BD9F51C5E925400127248 /* GameVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		1821EDF21C5BE9BC0005F7E2 /* RemoteSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteSender.m; sourceTree = "<group>"; };
 		1821EDF51C5BEB790005F7E2 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		1821EDF61C5BEB790005F7E2 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		186BD9F31C5E922900127248 /* MainMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuVC.swift; sourceTree = "<group>"; };
+		186BD9F51C5E925400127248 /* GameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 		18158EE71C5B1A8B00E300B6 /* iOS_App */ = {
 			isa = PBXGroup;
 			children = (
+				186BD9F31C5E922900127248 /* MainMenuVC.swift */,
+				186BD9F51C5E925400127248 /* GameVC.swift */,
 				1821EDF41C5BEB440005F7E2 /* RemoteSender */,
 				18158EE81C5B1A8B00E300B6 /* AppDelegate.swift */,
 				18158EEA1C5B1A8B00E300B6 /* ViewController.swift */,
@@ -156,8 +162,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1821EDF71C5BEB790005F7E2 /* GCDAsyncSocket.m in Sources */,
+				186BD9F41C5E922900127248 /* MainMenuVC.swift in Sources */,
 				18158EEB1C5B1A8B00E300B6 /* ViewController.swift in Sources */,
 				1821EDF31C5BE9BC0005F7E2 /* RemoteSender.m in Sources */,
+				186BD9F61C5E925400127248 /* GameVC.swift in Sources */,
 				18158EE91C5B1A8B00E300B6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
