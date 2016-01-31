@@ -20,6 +20,13 @@ class GameScene: SKScene {
     var controller : GCController!
     
     override func didMoveToView(view: SKView) {
+        /* Setup your scene here */
+        //Set up VGC
+        VgcManager.startAs(.Central, appIdentifier: "PSGiOSRITChallenge", includesPeerToPeer: true);
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "controllerDidConnect:", name: VgcControllerDidConnectNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "controllerDidDisconnect:", name: VgcControllerDidDisconnectNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "receivedPeripheralSetup:", name: VgcPeripheralSetupNotification, object: nil);
         
         let playerData = PlayerData(health: 10, attackStrength: 1, attackAngle: Angle(value: 0.0));
         player = Player(data: playerData);
@@ -105,5 +112,90 @@ class GameScene: SKScene {
         }
         
         
+    }
+    
+    @objc func controllerDidConnect(notification: NSNotification)
+    {
+        if VgcManager.appRole == .EnhancementBridge { return }
+        
+        guard let controller : VgcController = notification.object as? VgcController else {
+            print("Got nil controller in controllerDidConnect");
+            return;
+        }
+        
+        //if controller.deviceInfo.controllerType == .MFiHardware { return }
+        
+        VgcManager.peripheralSetup = VgcPeripheralSetup();
+        VgcManager.peripheralSetup.motionActive = false;
+        VgcManager.peripheralSetup.enableMotionAttitude = true;
+        VgcManager.peripheralSetup.enableMotionGravity = true;
+        VgcManager.peripheralSetup.enableMotionRotationRate = true;
+        VgcManager.peripheralSetup.enableMotionUserAcceleration = true;
+        VgcManager.peripheralSetup.sendToController(controller);
+        
+        controller.extendedGamepad?.dpad.valueChangedHandler = { (dpad, xValue, yValue) in
+            //Set up action for dPad here
+            print("dpad changed! x: \(xValue), y: \(yValue)");
+        }
+        
+        controller.extendedGamepad?.leftThumbstick.valueChangedHandler = { (dpad, xValue, yValue) in
+            //Set up action for left thumbstick here
+            print("left thumbstick changed! x: \(xValue), y: \(yValue)");
+        }
+        
+        controller.extendedGamepad?.rightThumbstick.valueChangedHandler = { (dpad, xValue, yValue) in
+            //Set up action for right thumbstick here
+            print("right thumbstick changed! x: \(xValue), y: \(yValue)");
+        }
+        
+        controller.extendedGamepad?.rightShoulder.valueChangedHandler = { (input, value, pressed) in
+            //Set up action for right shoulder here
+            print("right shoulder changed: value: \(value), pressed: \(pressed)");
+        }
+        
+        controller.extendedGamepad?.leftShoulder.valueChangedHandler = { (input, value, pressed) in
+            //Set up action for left shoulder here
+            print("left shoulder changed: value: \(value), pressed: \(pressed)");
+        }
+        
+        controller.extendedGamepad?.rightTrigger.valueChangedHandler = { (input, value, pressed) in
+            //Set up action for right trigger here
+            print("right trigger changed: value: \(value), pressed: \(pressed)");
+        }
+        
+        controller.extendedGamepad?.leftTrigger.valueChangedHandler = { (input, value, pressed) in
+            //Set up action for left trigger here
+            print("left trigger changed: value: \(value), pressed: \(pressed)");
+        }
+        
+        controller.extendedGamepad?.buttonA.valueChangedHandler = { (input, value, pressed) in
+            //Set up action for buttonA here
+            print("A button changed: value: \(value), pressed: \(pressed)");
+        }
+        
+        controller.extendedGamepad?.buttonX.valueChangedHandler = { (input, value, pressed) in
+            //Set up action for button X here
+            print("X button changed: value: \(value), pressed: \(pressed)");
+        }
+        
+        controller.extendedGamepad?.buttonB.valueChangedHandler = { (input, value, pressed) in
+            //Set up action for button B here
+            print("B button changed: value: \(value), pressed: \(pressed)");
+        }
+        
+        controller.extendedGamepad?.buttonY.valueChangedHandler = { (input, value, pressed) in
+            //Set up action for button Y here
+            print("Y button changed: value: \(value), pressed: \(pressed)");
+        }
+    }
+    
+    @objc func controllerDidDisconnect(notification: NSNotification)
+    {
+        //Set up actions for controller disconnects
+    }
+    
+    @objc func receivedPeripheralSetup(notification: NSNotification)
+    {
+        print("Peripheral setup!");
     }
 }
