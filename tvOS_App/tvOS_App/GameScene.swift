@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameController
 
 class GameScene: SKScene {
     
@@ -16,6 +17,7 @@ class GameScene: SKScene {
     var debugEnemy : SKLabelNode!
     var debugText : SKLabelNode!
     var lastLocation : CGPoint = CGPointMake(0, 0)
+    var controller : GCController!
     
     override func didMoveToView(view: SKView) {
         
@@ -66,41 +68,35 @@ class GameScene: SKScene {
         swipeDown.direction = .Down
         self.view!.addGestureRecognizer(swipeDown)
         
-        /*
-        let dragRecognizer = UIPanGestureRecognizer()
-        dragRecognizer.addTarget(self, action: "detectDrag")
-        self.view!.addGestureRecognizer(dragRecognizer)
-        */
+        GCController.startWirelessControllerDiscoveryWithCompletionHandler({()->Void in })
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(GCControllerDidConnectNotification, object: nil, queue: nil)
+        { note in
+            self.controller = GCController.controllers().first!
+            
+            self.controller.microGamepad?.valueChangedHandler = { (gamepad, element) -> Void in
+                if element == self.controller.microGamepad?.dpad {
+                    //TODO: now that we have access to dpad movement, use that to adjust the attack angle!
+                    self.debugText.text = String(self.controller.microGamepad?.dpad.left.value)
+                }
+            }
+        }
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.waitForDuration(enemyData.attackInterval),SKAction.runBlock(){self.player.damage(enemyData.attack)}])))
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.waitForDuration(enemyData.attackInterval),SKAction.runBlock(){self.enemy.weaknessAngle = self.enemy.weaknessAngle + Angle(value: M_PI/6)}])))
     }
     
-    /*
-    func detectDrag(recognizer:UIPanGestureRecognizer)
-    {
-        //Xcode complains if I make this "Var" instead of "Let" cause I never mutate it :/
-        let velocity = recognizer.translationInView(self.view)
-        if let view = recognizer.view {
-            view.center = CGPoint(x:view.center.x + velocity.x,
-                y:view.center.y + velocity.y)
-        }
-        recognizer.setTranslation(CGPointZero, inView: self.view)
-        //debugText.text = String(velocity)
-        //player.attackAngle = player.attackAngle + Angle(value: Double(velocity.x))
-    }
-    */
-    
     func pressedSelect()
     {
         debugText.text = "Select button pressed"
-        if ( player.attackAngle == enemy.weaknessAngle)
+        //TODO: Fix the condition that detects sucessful hits
+        if ( player.attackAngle == enemy.weaknessAngle || player.attackAngle + Angle(value:M_PI) == enemy.weaknessAngle)
         {
-            debugText.text = "successful attack"
+            //debugText.text = "successful attack"
             enemy.damage(player.attackStrength)
         }
         else
         {
-            debugText.text = "Missed attack"
+            //debugText.text = "Missed attack"
         }
         //player.damage(enemy.attack)
     }
