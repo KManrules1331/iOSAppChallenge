@@ -11,9 +11,12 @@ import SpriteKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var background: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let scene = GameScene(fileNamed: "GameScene") {
             // Configure the view.
             let skView = self.view as! SKView

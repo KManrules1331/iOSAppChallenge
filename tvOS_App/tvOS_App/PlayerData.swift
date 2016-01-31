@@ -11,4 +11,5 @@ import Foundation
 struct PlayerData {
     var health : Int;
     var attackStrength : Int;
+    var attackAngle : Angle;
 }

@@ -11,6 +11,7 @@ import Foundation
 class Player {
     var health : Int;
     var attackStrength : Int;
+    var attackAngle : Angle;
     
     var isAlive : Bool
     {
@@ -19,29 +20,12 @@ class Player {
             return health > 0;
         }
     }
-    var Health : Int
-    {
-        get
-        {
-            return health;
-        }
-    }
-    var AttackStrength : Int
-    {
-        get
-        {
-            return attackStrength;
-        }
-        set(value)
-        {
-            attackStrength = value;
-        }
-    }
     
     init(data: PlayerData)
     {
         self.health = data.health;
         self.attackStrength = data.attackStrength;
+        self.attackAngle = data.attackAngle;
     }
     
     func damage(dmg: Int)

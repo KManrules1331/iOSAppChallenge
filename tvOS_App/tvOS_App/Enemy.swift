@@ -24,12 +24,12 @@ class Enemy
         }
     }
     
-    private var health : Int;
-    private var attack : Int;
-    private var attackInterval : Double;
-    private var weaknessAngle : Angle;
-    private var marginOfError : Angle;
-    private var sprite : SKSpriteNode;
+    var health : Int;
+    var attack : Int;
+    var attackInterval : Double;
+    var weaknessAngle : Angle;
+    var marginOfError : Angle;
+    var sprite : SKSpriteNode;
     
     private var width = CGFloat(100);
     private var height = CGFloat(100);
@@ -57,6 +57,11 @@ class Enemy
     func update(deltaTime: CFTimeInterval) -> Void
     {
         attackTimer += deltaTime;
+    }
+    
+    func damage (dmg: Int)
+    {
+        health -= dmg;
     }
     
     func didHit(angle: Angle) -> Bool
