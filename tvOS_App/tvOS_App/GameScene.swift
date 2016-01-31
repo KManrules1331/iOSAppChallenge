@@ -28,6 +28,11 @@ class GameScene: SKScene {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "controllerDidDisconnect:", name: VgcControllerDidDisconnectNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "receivedPeripheralSetup:", name: VgcPeripheralSetupNotification, object: nil);
         
+        let background = SKSpriteNode(imageNamed: "background_TV", normalMapped: true)
+        background.size = size
+        background.position = CGPointMake(size.width/2, size.height/2)
+        background.zPosition = -5
+        
         let playerData = PlayerData(health: 10, attackStrength: 1, attackAngle: Angle(value: 0.0));
         player = Player(data: playerData);
         let enemyData = EnemyData(health: 5, attack: 1, attackInterval: 2.0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: 0.75), imageName: "enemy");
@@ -57,6 +62,7 @@ class GameScene: SKScene {
         self.addChild(debugPlayer)
         self.addChild(debugEnemy)
         self.addChild(debugText)
+        self.addChild(background)
         
         //Register select events
         let tapSelect = UITapGestureRecognizer()
@@ -72,8 +78,8 @@ class GameScene: SKScene {
             
             self.controller.microGamepad?.valueChangedHandler = { (gamepad, element) -> Void in
                 if element == self.controller.microGamepad?.dpad {
-                    let zPosition = (self.controller.microGamepad?.dpad.left.value)! - (self.controller.microGamepad?.dpad.right.value)!
-                    self.player.attackAngle = Angle(value: M_PI * Double(zPosition))
+                    let xPosition = (self.controller.microGamepad?.dpad.left.value)! - (self.controller.microGamepad?.dpad.right.value)!
+                    self.player.attackAngle = Angle(value: M_PI * Double(xPosition))
                 }
             }
         }
@@ -134,59 +140,33 @@ class GameScene: SKScene {
         VgcManager.peripheralSetup.sendToController(controller);
         
         controller.extendedGamepad?.dpad.valueChangedHandler = { (dpad, xValue, yValue) in
-            //Set up action for dPad here
+            self.player.attackAngle = Angle(value: M_PI * Double(xValue))
             print("dpad changed! x: \(xValue), y: \(yValue)");
         }
         
         controller.extendedGamepad?.leftThumbstick.valueChangedHandler = { (dpad, xValue, yValue) in
-            //Set up action for left thumbstick here
+            self.player.attackAngle = Angle(value: M_PI * Double(xValue))
             print("left thumbstick changed! x: \(xValue), y: \(yValue)");
         }
         
         controller.extendedGamepad?.rightThumbstick.valueChangedHandler = { (dpad, xValue, yValue) in
-            //Set up action for right thumbstick here
+            self.player.attackAngle = Angle(value: M_PI * Double(xValue))
             print("right thumbstick changed! x: \(xValue), y: \(yValue)");
         }
         
-        controller.extendedGamepad?.rightShoulder.valueChangedHandler = { (input, value, pressed) in
-            //Set up action for right shoulder here
-            print("right shoulder changed: value: \(value), pressed: \(pressed)");
-        }
-        
-        controller.extendedGamepad?.leftShoulder.valueChangedHandler = { (input, value, pressed) in
-            //Set up action for left shoulder here
-            print("left shoulder changed: value: \(value), pressed: \(pressed)");
-        }
-        
-        controller.extendedGamepad?.rightTrigger.valueChangedHandler = { (input, value, pressed) in
-            //Set up action for right trigger here
-            print("right trigger changed: value: \(value), pressed: \(pressed)");
-        }
-        
-        controller.extendedGamepad?.leftTrigger.valueChangedHandler = { (input, value, pressed) in
-            //Set up action for left trigger here
-            print("left trigger changed: value: \(value), pressed: \(pressed)");
-        }
-        
         controller.extendedGamepad?.buttonA.valueChangedHandler = { (input, value, pressed) in
-            //Set up action for buttonA here
+            if ( self.player.attackAngle > self.enemy.weaknessAngle - self.enemy.marginOfError && self.player.attackAngle < self.enemy.weaknessAngle + self.enemy.marginOfError)
+            {
+                self.debugText.text = "successful attack"
+                self.enemy.damage(self.player.attackStrength)
+            }
+            else
+            {
+                self.debugText.text = "Missed attack"
+            }
             print("A button changed: value: \(value), pressed: \(pressed)");
         }
         
-        controller.extendedGamepad?.buttonX.valueChangedHandler = { (input, value, pressed) in
-            //Set up action for button X here
-            print("X button changed: value: \(value), pressed: \(pressed)");
-        }
-        
-        controller.extendedGamepad?.buttonB.valueChangedHandler = { (input, value, pressed) in
-            //Set up action for button B here
-            print("B button changed: value: \(value), pressed: \(pressed)");
-        }
-        
-        controller.extendedGamepad?.buttonY.valueChangedHandler = { (input, value, pressed) in
-            //Set up action for button Y here
-            print("Y button changed: value: \(value), pressed: \(pressed)");
-        }
     }
     
     @objc func controllerDidDisconnect(notification: NSNotification)
