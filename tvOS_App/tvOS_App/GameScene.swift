@@ -23,7 +23,7 @@ class GameScene: SKScene {
         
         let playerData = PlayerData(health: 10, attackStrength: 1, attackAngle: Angle(value: 0.0));
         player = Player(data: playerData);
-        let enemyData = EnemyData(health: 5, attack: 1, attackInterval: 2.0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: 0.0), imageName: "enemy");
+        let enemyData = EnemyData(health: 5, attack: 1, attackInterval: 2.0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: 0.75), imageName: "enemy");
         enemy = Enemy(data: enemyData, position: CGPointMake(size.width / 2, size.height / 2), scene: self);
         
         debugPlayer = SKLabelNode(fontNamed:"Chalkduster")
@@ -77,7 +77,10 @@ class GameScene: SKScene {
             self.controller.microGamepad?.valueChangedHandler = { (gamepad, element) -> Void in
                 if element == self.controller.microGamepad?.dpad {
                     //TODO: now that we have access to dpad movement, use that to adjust the attack angle!
-                    self.debugText.text = String(self.controller.microGamepad?.dpad.left.value)
+                    let zPosition = (self.controller.microGamepad?.dpad.left.value)! - (self.controller.microGamepad?.dpad.right.value)!
+                    print(zPosition)
+                    self.player.attackAngle = Angle(value: M_PI * Double(zPosition))
+                    //self.debugText.text = String(zPosition)
                 }
             }
         }
@@ -87,16 +90,16 @@ class GameScene: SKScene {
     
     func pressedSelect()
     {
-        debugText.text = "Select button pressed"
+        //debugText.text = "Select button pressed"
         //TODO: Fix the condition that detects sucessful hits
-        if ( player.attackAngle == enemy.weaknessAngle || player.attackAngle + Angle(value:M_PI) == enemy.weaknessAngle)
+        if ( player.attackAngle > enemy.weaknessAngle - enemy.marginOfError && player.attackAngle < enemy.weaknessAngle + enemy.marginOfError)
         {
-            //debugText.text = "successful attack"
+            debugText.text = "successful attack"
             enemy.damage(player.attackStrength)
         }
         else
         {
-            //debugText.text = "Missed attack"
+            debugText.text = "Missed attack"
         }
         //player.damage(enemy.attack)
     }
