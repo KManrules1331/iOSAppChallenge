@@ -57,17 +57,6 @@ class GameScene: SKScene {
         tapSelect.allowedPressTypes = [NSNumber (integer: UIPressType.Select.rawValue)]
         self.view!.addGestureRecognizer(tapSelect)
         
-        //Register swipe events
-        let swipeUp = UISwipeGestureRecognizer()
-        swipeUp.addTarget(self, action: "swipedUp")
-        swipeUp.direction = .Up
-        self.view!.addGestureRecognizer(swipeUp)
-        
-        let swipeDown = UISwipeGestureRecognizer()
-        swipeDown.addTarget(self, action: "swipedDown")
-        swipeDown.direction = .Down
-        self.view!.addGestureRecognizer(swipeDown)
-        
         GCController.startWirelessControllerDiscoveryWithCompletionHandler({()->Void in })
         
         NSNotificationCenter.defaultCenter().addObserverForName(GCControllerDidConnectNotification, object: nil, queue: nil)
@@ -76,11 +65,8 @@ class GameScene: SKScene {
             
             self.controller.microGamepad?.valueChangedHandler = { (gamepad, element) -> Void in
                 if element == self.controller.microGamepad?.dpad {
-                    //TODO: now that we have access to dpad movement, use that to adjust the attack angle!
                     let zPosition = (self.controller.microGamepad?.dpad.left.value)! - (self.controller.microGamepad?.dpad.right.value)!
-                    print(zPosition)
                     self.player.attackAngle = Angle(value: M_PI * Double(zPosition))
-                    //self.debugText.text = String(zPosition)
                 }
             }
         }
@@ -90,8 +76,6 @@ class GameScene: SKScene {
     
     func pressedSelect()
     {
-        //debugText.text = "Select button pressed"
-        //TODO: Fix the condition that detects sucessful hits
         if ( player.attackAngle > enemy.weaknessAngle - enemy.marginOfError && player.attackAngle < enemy.weaknessAngle + enemy.marginOfError)
         {
             debugText.text = "successful attack"
@@ -101,19 +85,6 @@ class GameScene: SKScene {
         {
             debugText.text = "Missed attack"
         }
-        //player.damage(enemy.attack)
-    }
-    
-    func swipedUp()
-    {
-        //debugText.text = "Swiped Up"
-        player.attackAngle = player.attackAngle + Angle(value: M_PI/6);
-    }
-    
-    func swipedDown()
-    {
-        //debugText.text = "Swiped down"
-        player.attackAngle = player.attackAngle - Angle(value: M_PI/6);
     }
    
     override func update(currentTime: CFTimeInterval) {
