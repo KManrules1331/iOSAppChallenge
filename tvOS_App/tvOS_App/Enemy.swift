@@ -43,6 +43,7 @@ class Enemy
         self.sprite.position = position;
         self.sprite.xScale = width / self.sprite.frame.width;
         self.sprite.yScale = height / self.sprite.frame.height;
+        self.sprite.hidden = true;
         self.health = data.health;
         self.attack = data.attack;
         self.attackInterval = data.attackInterval;

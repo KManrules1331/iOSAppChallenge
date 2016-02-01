@@ -18,6 +18,12 @@ class GameScene: SKScene {
     var debugText : SKLabelNode!
     var lastLocation : CGPoint = CGPointMake(0, 0)
     var controller : GCController!
+    var enemy1Idl : SKSpriteNode!
+    var enemy1Atk : SKSpriteNode!
+    var enemy2Idl : SKSpriteNode!
+    var enemy2Atk : SKSpriteNode!
+    var sword : SKSpriteNode!
+    var currentEnemy : Int = 0
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -33,9 +39,35 @@ class GameScene: SKScene {
         background.position = CGPointMake(size.width/2, size.height/2)
         background.zPosition = -5
         
+        enemy1Idl = SKSpriteNode(imageNamed: "enemy_idle", normalMapped: true)
+        enemy1Idl.size = CGSize(width: 300, height: 300)
+        enemy1Idl.position = CGPointMake(size.width/2, size.height/2)
+        enemy1Idl.zPosition = 2
+        
+        enemy1Atk = SKSpriteNode(imageNamed: "enemy_attack", normalMapped: true)
+        enemy1Atk.size = CGSize(width: 300, height: 300)
+        enemy1Atk.position = CGPointMake(size.width/2, size.height/2)
+        enemy1Atk.zPosition = 2
+        
+        enemy2Idl = SKSpriteNode(imageNamed: "enemy_2_idle", normalMapped: true)
+        enemy2Idl.size = CGSize(width: 300, height: 300)
+        enemy2Idl.position = CGPointMake(size.width/2 + 800, size.height/2 + 800)
+        enemy2Idl.zPosition = 2
+        
+        enemy2Atk = SKSpriteNode(imageNamed: "enemy_2_attack", normalMapped: true)
+        enemy2Atk.size = CGSize(width: 300, height: 300)
+        enemy2Atk.position = CGPointMake(size.width/2 + 800, size.height/2 + 800)
+        enemy2Atk.zPosition = 2
+        
+        sword = SKSpriteNode(imageNamed: "sword", normalMapped: true)
+        sword.size = CGSize(width: 507/5, height: 4000/5)
+        //sword.anchorPoint = CGPoint(x:size.width/2, y:size.height/2)
+        sword.position = CGPointMake(size.width/2, size.height/2)
+        sword.zPosition = 3
+        
         let playerData = PlayerData(health: 10, attackStrength: 1, attackAngle: Angle(value: 0.0));
         player = Player(data: playerData);
-        let enemyData = EnemyData(health: 5, attack: 1, attackInterval: 2.0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: 0.75), imageName: "enemy");
+        let enemyData = EnemyData(health: 5, attack: 1, attackInterval: 2.0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: M_PI/2), imageName: "enemy");
         enemy = Enemy(data: enemyData, position: CGPointMake(size.width / 2, size.height / 2), scene: self);
         
         debugPlayer = SKLabelNode(fontNamed:"Chalkduster")
@@ -63,6 +95,15 @@ class GameScene: SKScene {
         self.addChild(debugEnemy)
         self.addChild(debugText)
         self.addChild(background)
+        self.addChild(enemy1Idl)
+        enemy1Idl.hidden = true
+        self.addChild(enemy1Atk)
+        enemy1Atk.hidden = true
+        self.addChild(enemy2Idl)
+        enemy2Idl.hidden = false
+        self.addChild(enemy2Atk)
+        enemy2Atk.hidden = true
+        self.addChild(sword)
         
         //Register select events
         let tapSelect = UITapGestureRecognizer()
@@ -83,8 +124,33 @@ class GameScene: SKScene {
                 }
             }
         }
-        self.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.waitForDuration(enemyData.attackInterval),SKAction.runBlock(){self.player.damage(enemyData.attack)}])))
-        self.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.waitForDuration(enemyData.attackInterval),SKAction.runBlock(){self.enemy.weaknessAngle = self.enemy.weaknessAngle + Angle(value: M_PI/6)}])))
+        //Enemy attacks
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence(
+            [SKAction.waitForDuration(enemyData.attackInterval),
+                SKAction.runBlock(){self.player.damage(enemyData.attack)}])))
+        
+            self.runAction(SKAction.repeatActionForever(SKAction.sequence([
+                    SKAction.runBlock(){self.enemy1Idl.hidden = false},
+                    SKAction.waitForDuration(enemyData.attackInterval - 0.45),
+                    SKAction.runBlock(){self.enemy1Idl.hidden = true},
+                    SKAction.runBlock(){self.enemy1Atk.hidden = false},
+                    SKAction.waitForDuration(0.45),
+                    SKAction.runBlock(){self.enemy1Atk.hidden = true},
+                    SKAction.runBlock(){self.enemy1Idl.hidden = false}])))
+        
+            self.runAction(SKAction.repeatActionForever(SKAction.sequence([
+                    SKAction.runBlock(){self.enemy2Idl.hidden = false},
+                    SKAction.waitForDuration(enemyData.attackInterval - 0.45),
+                    SKAction.runBlock(){self.enemy2Idl.hidden = true},
+                    SKAction.runBlock(){self.enemy2Atk.hidden = false},
+                    SKAction.waitForDuration(0.45),
+                    SKAction.runBlock(){self.enemy2Atk.hidden = true},
+                    SKAction.runBlock(){self.enemy2Idl.hidden = false}])))
+        
+        //Enemy rotates
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([
+            SKAction.waitForDuration(0.01),
+            SKAction.runBlock(){self.enemy.weaknessAngle = self.enemy.weaknessAngle + Angle(value: M_PI/500)}])))
     }
     
     func pressedSelect()
@@ -111,6 +177,30 @@ class GameScene: SKScene {
         debugPlayer.text = "Player Health: " + String(player.health)
             + " Player Attack Strength: " + String(player.attackStrength)
             + " Player Attack Angle: " + String(player.attackAngle.Value)
+        
+        debugText.text = "\(currentEnemy)"
+        
+        let rotation = CGFloat(self.enemy.weaknessAngle.Value);
+        self.enemy1Idl.zRotation = rotation + CGFloat(M_PI/2);
+        self.enemy1Atk.zRotation = rotation + CGFloat(5 * M_PI/12);
+        self.enemy2Idl.zRotation = rotation - CGFloat(M_PI/12);
+        self.enemy2Atk.zRotation = rotation;
+        self.sword.zRotation = CGFloat(self.player.attackAngle.Value) - CGFloat(M_PI/2);
+        
+        if ( enemy.health == 0)
+        {
+            enemy.health = 5
+            enemy.marginOfError = (enemy.marginOfError == Angle(value: M_PI/2)) ? Angle(value: M_PI/5) : Angle(value: M_PI/2)
+            currentEnemy += 1;
+            let enemy1Pos = enemy1Atk.position;
+            let enemy2Pos = enemy2Atk.position;
+            
+            enemy1Idl.position = enemy2Pos;
+            enemy1Atk.position = enemy2Pos;
+            
+            enemy2Idl.position = enemy1Pos;
+            enemy2Atk.position = enemy1Pos;
+        }
         
         if !player.isAlive
         {
@@ -155,15 +245,7 @@ class GameScene: SKScene {
         }
         
         controller.extendedGamepad?.buttonA.valueChangedHandler = { (input, value, pressed) in
-            if ( self.player.attackAngle > self.enemy.weaknessAngle - self.enemy.marginOfError && self.player.attackAngle < self.enemy.weaknessAngle + self.enemy.marginOfError)
-            {
-                self.debugText.text = "successful attack"
-                self.enemy.damage(self.player.attackStrength)
-            }
-            else
-            {
-                self.debugText.text = "Missed attack"
-            }
+            self.pressedSelect()
             print("A button changed: value: \(value), pressed: \(pressed)");
         }
         
