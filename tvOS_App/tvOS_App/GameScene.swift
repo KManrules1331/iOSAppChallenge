@@ -59,8 +59,8 @@ class GameScene: SKScene {
         enemy2Atk.position = CGPointMake(size.width/2 + 800, size.height/2 + 800)
         enemy2Atk.zPosition = 2
         
-        sword = SKSpriteNode(imageNamed: "sword", normalMapped: true)
-        sword.size = CGSize(width: 507/5, height: 4000/5)
+        sword = SKSpriteNode(imageNamed: "swordFixed", normalMapped: true)
+        sword.size = CGSize(width: 253/4, height: 3200/4)
         //sword.anchorPoint = CGPoint(x:size.width/2, y:size.height/2)
         sword.position = CGPointMake(size.width/2, size.height/2)
         sword.zPosition = 3
