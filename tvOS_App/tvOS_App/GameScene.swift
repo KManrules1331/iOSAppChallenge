@@ -282,7 +282,7 @@ class GameScene: SKScene {
             //Do nothing
             break;
         case .Some(.Running):
-            self.player.attackAngle = Angle(value: M_PI * Double(xPosition));
+            self.player.attackAngle = Angle(value: M_PI * -1 * Double(xPosition));
             break;
         case .Some(.GameOver):
             //Do nothing
