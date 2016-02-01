@@ -28,14 +28,20 @@ class GameScene: SKScene {
             switch(GameState)
             {
             case .Some(.Menu):
-                let background = SKSpriteNode(imageNamed: "enemy");
+                let background = SKSpriteNode(imageNamed: "tv_main_menu_noText");
                 background.size = size;
                 background.position = CGPointMake(size.width / 2, size.height / 2);
                 background.zPosition = -5;
                 self.addChild(background);
+                
+                let menuText = SKSpriteNode(imageNamed: "Title");
+                menuText.size = CGSize(width: size.width/1.5, height: 200);
+                menuText.position = CGPointMake(size.width / 2, size.height - 250);
+                menuText.zPosition = -4;
+                self.addChild(menuText);
                 break;
             case .Some(.Running):
-                let background = SKSpriteNode(imageNamed: "background_TV", normalMapped: true)
+                let background = SKSpriteNode(imageNamed: "tv_background_2", normalMapped: true)
                 background.size = size
                 background.position = CGPointMake(size.width/2, size.height/2)
                 background.zPosition = -5;
@@ -43,7 +49,7 @@ class GameScene: SKScene {
                 
                 let playerData = PlayerData(health: 10, attackStrength: 1, attackAngle: Angle(value: 0.0));
                 player = Player(data: playerData);
-                let enemyData = EnemyData(health: 5, attack: 1, attackInterval: 2.0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: 0.75), imageName: "enemy");
+                let enemyData = EnemyData(health: 5, attack: 1, attackInterval: 2.0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: 0.75), imageName: "enemy_1_idle");
                 enemy = Enemy(data: enemyData, position: CGPointMake(size.width / 2, size.height / 2), scene: self);
                 
                 debugPlayer = SKLabelNode(fontNamed:"Chalkduster")
@@ -76,11 +82,18 @@ class GameScene: SKScene {
                 
                 break;
             case .Some(.GameOver):
-                let background = SKSpriteNode(imageNamed: "enemy");
+                let background = SKSpriteNode(imageNamed: "tv_defeat");
                 background.size = size;
                 background.position = CGPointMake(size.width / 2, size.height / 2);
                 background.zPosition = -5;
                 self.addChild(background);
+                
+                let menuText = SKSpriteNode(imageNamed: "text_overran");
+                menuText.size = CGSize(width: size.width/1.5, height: 200);
+                menuText.position = CGPointMake(size.width / 2, size.height - 250);
+                menuText.zPosition = -4;
+                self.addChild(menuText);
+                
                 break;
             case .Some(.Paused):
                 break;
