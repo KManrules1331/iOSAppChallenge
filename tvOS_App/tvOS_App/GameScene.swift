@@ -134,9 +134,9 @@ class GameScene: SKScene {
                 debugText.fontSize = 10
                 debugText.position = CGPoint(x:100, y: 630)
                 
-                self.addChild(debugPlayer)
-                self.addChild(debugEnemy)
-                self.addChild(debugText)
+                //self.addChild(debugPlayer)
+                //self.addChild(debugEnemy)
+                //self.addChild(debugText)
                 self.addChild(enemy1Idl)
                 enemy1Idl.hidden = true
                 self.addChild(enemy1Atk)
@@ -308,6 +308,20 @@ class GameScene: SKScene {
             {
                 debugText.text = "successful attack"
                 enemy.damage(player.attackStrength)
+                
+                // attack enemy feedback
+                let shake1 = SKAction.shake(enemy1Atk.position, duration: 0.4, amplitudeX: 30, amplitudeY: 30)
+                enemy1Atk.runAction(shake1)
+                
+                let shake2 = SKAction.shake(enemy1Idl.position, duration: 0.4, amplitudeX: 30, amplitudeY: 30)
+                enemy1Idl.runAction(shake2)
+                
+                let shake3 = SKAction.shake(enemy2Atk.position, duration: 0.4, amplitudeX: 30, amplitudeY: 30)
+                enemy2Atk.runAction(shake3)
+                
+                let shake4 = SKAction.shake(enemy2Idl.position, duration: 0.4, amplitudeX: 30, amplitudeY: 30)
+                enemy2Idl.runAction(shake4)
+                
             }
             else
             {
