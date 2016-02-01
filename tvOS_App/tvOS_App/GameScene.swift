@@ -215,6 +215,24 @@ class GameScene: SKScene {
                 gameScore.position = CGPoint(x: size.width/2, y: size.height/2)
                 self.addChild(gameScore)
                 
+                let credits1 = SKLabelNode(fontNamed: "Chalkduster")
+                credits1.text = "Credit goes to Kyle Larson, Patrick Gormley, Stephen Garabedian"
+                credits1.fontSize = 15
+                credits1.position = CGPoint(x: size.width/2, y: size.height/2 - 100)
+                self.addChild(credits1)
+                
+                let credits2 = SKLabelNode(fontNamed: "Chalkduster")
+                credits2.text = "Created as a part of RIT's 2016 iOS Challenge"
+                credits2.fontSize = 15
+                credits2.position = CGPoint(x: size.width/2, y: size.height/2 - 120)
+                self.addChild(credits2)
+                
+                let credits3 = SKLabelNode(fontNamed: "Chalkduster")
+                credits3.text = "Technologies Used: Rob Reuss's VirtualGameController, Stephen Haney's Camera Shake with SpriteKit in Swift"
+                credits3.fontSize = 15
+                credits3.position = CGPoint(x: size.width/2, y: size.height/2 - 140)
+                self.addChild(credits3)
+                
                 break;
             case .Some(.Paused):
                 break;
