@@ -83,6 +83,8 @@ class GameScene: SKScene {
                 let enemyData = EnemyData(health: 5, attack: 1, attackInterval: 2.0, weaknessAngle: Angle(value: 0.0), marginOfError: Angle(value: M_PI/2), imageName: "enemy");
                 enemy = Enemy(data: enemyData, position: CGPointMake(size.width / 2, size.height / 2), scene: self);
                 
+                currentEnemy = 0
+                
                 debugPlayer = SKLabelNode(fontNamed:"Chalkduster")
                 debugPlayer.text = "Player Health: " + String(playerData.health)
                     + " Player Attack Strength: " + String(playerData.attackStrength)
@@ -158,6 +160,12 @@ class GameScene: SKScene {
                 menuText.position = CGPointMake(size.width / 2, size.height - 250);
                 menuText.zPosition = -4;
                 self.addChild(menuText);
+                
+                let gameScore = SKLabelNode(fontNamed: "Chalkduster")
+                gameScore.text = "Final Score: " + String(currentEnemy) + " Enemies Killed"
+                gameScore.fontSize = 50
+                gameScore.position = CGPoint(x: size.width/2, y: size.height/2)
+                self.addChild(gameScore)
                 
                 break;
             case .Some(.Paused):
