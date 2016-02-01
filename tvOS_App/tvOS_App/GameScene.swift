@@ -9,6 +9,27 @@
 import SpriteKit
 import GameController
 
+
+// Credit to Stephen Haney for the this shake code --------------------
+// http://www.thinkingswiftly.com/camera-shake-with-spritekit-in-swift/
+extension SKAction {
+    class func shake(initialPosition:CGPoint, duration:Float, amplitudeX:Int = 12, amplitudeY:Int = 3) -> SKAction {
+        let startingX = initialPosition.x
+        let startingY = initialPosition.y
+        let numberOfShakes = duration / 0.015
+        var actionsArray:[SKAction] = []
+        for index in 1...Int(numberOfShakes) {
+            let newXPos = startingX + CGFloat(arc4random_uniform(UInt32(amplitudeX))) - CGFloat(amplitudeX / 2)
+            let newYPos = startingY + CGFloat(arc4random_uniform(UInt32(amplitudeY))) - CGFloat(amplitudeY / 2)
+            actionsArray.append(SKAction.moveTo(CGPointMake(newXPos, newYPos), duration: 0.015))
+        }
+        actionsArray.append(SKAction.moveTo(initialPosition, duration: 0.015))
+        return SKAction.sequence(actionsArray)
+    }
+}
+// Credit end -----------------------------------------------------------
+
+
 class GameScene: SKScene {
     
     var enemy : Enemy!
@@ -24,6 +45,8 @@ class GameScene: SKScene {
     var enemy2Atk : SKSpriteNode!
     var sword : SKSpriteNode!
     var currentEnemy : Int = 0
+    
+    var backgroundNode : SKSpriteNode!
     
     var playerBar : [SKSpriteNode] = []
     var enemyBar : [SKSpriteNode] = []
@@ -54,6 +77,7 @@ class GameScene: SKScene {
                 background.size = size
                 background.position = CGPointMake(size.width/2, size.height/2)
                 background.zPosition = -5;
+                backgroundNode = background;
                 self.addChild(background);
                 
                 enemy1Idl = SKSpriteNode(imageNamed: "enemy_idle", normalMapped: true)
@@ -270,6 +294,11 @@ class GameScene: SKScene {
             else
             {
                 debugText.text = "Missed attack"
+                // miss attack feedback
+                let shake = SKAction.shake(sword.position, duration: 0.4, amplitudeX: 30, amplitudeY: 30)
+                sword.runAction(shake)
+                let shake2 = SKAction.shake(backgroundNode.position, duration: 0.4, amplitudeX: 30, amplitudeY: 30)
+                backgroundNode.runAction(shake2)
             }
             break;
         case .Some(.GameOver):
