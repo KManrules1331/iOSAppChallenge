@@ -9,8 +9,5 @@
 #ifndef ObjC_Bridge_h
 #define ObjC_Bridge_h
 
-#import "RemoteSender.h"
-#import "GCDAsyncSocket.h"
-
 
 #endif /* ObjC_Bridge_h */
