@@ -25,6 +25,10 @@ class GameScene: SKScene {
     var sword : SKSpriteNode!
     var currentEnemy : Int = 0
     
+    var playerBar : [SKSpriteNode] = []
+    var enemyBar : [SKSpriteNode] = []
+    
+    
     var GameState : GameStateEnum! {
         didSet
         {
@@ -146,6 +150,26 @@ class GameScene: SKScene {
                 self.runAction(SKAction.repeatActionForever(SKAction.sequence([
                     SKAction.waitForDuration(0.01),
                     SKAction.runBlock(){self.enemy.weaknessAngle = self.enemy.weaknessAngle + Angle(value: M_PI/500)}])))
+                
+                // set up helath bars
+                // player health
+                for i in 0 ..< player.health {
+                    let playerHeart = SKSpriteNode(imageNamed: "player_heart", normalMapped: true)
+                    playerHeart.size = CGSize(width: 50, height: 50)
+                    playerHeart.position = CGPointMake(50 + 50 * CGFloat(i), size.height - 125)
+                    playerHeart.zPosition = 2
+                    playerBar.append(playerHeart)
+                    self.addChild(playerBar[i])
+                }
+                // enemy health 
+                for i in 0 ..< enemy.health {
+                    let enemyHeart = SKSpriteNode(imageNamed: "enemy_heart", normalMapped: true)
+                    enemyHeart.size = CGSize(width: 50, height: 50)
+                    enemyHeart.position = CGPointMake(size.width - 50 - (50 * CGFloat(i)), size.height - 125)
+                    enemyHeart.zPosition = 2
+                    enemyBar.append(enemyHeart)
+                    self.addChild(enemyBar[i])
+                }
                 
                 break;
             case .Some(.GameOver):
@@ -283,6 +307,22 @@ class GameScene: SKScene {
             self.enemy2Idl.zRotation = rotation - CGFloat(M_PI/12);
             self.enemy2Atk.zRotation = rotation;
             self.sword.zRotation = CGFloat(self.player.attackAngle.Value) - CGFloat(M_PI/2);
+            
+            // update health bars
+            // player health
+            for i in 0 ..< 10{
+                playerBar[i].hidden = true;
+            }
+            for i in 0 ..< player.health {
+                playerBar[i].hidden = false
+            }
+            // enemy health 
+            for i in 0 ..< 5{
+                enemyBar[i].hidden = true
+            }
+            for i in 0 ..< enemy.health {
+                enemyBar[i].hidden = false
+            }
             
             if ( enemy.health == 0)
             {
