@@ -12,8 +12,23 @@
 		18158EEE1C5B1A8B00E300B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18158EEC1C5B1A8B00E300B6 /* Main.storyboard */; };
 		18158EF01C5B1A8B00E300B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18158EEF1C5B1A8B00E300B6 /* Assets.xcassets */; };
 		18158EF31C5B1A8B00E300B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18158EF11C5B1A8B00E300B6 /* LaunchScreen.storyboard */; };
-		1821EDF31C5BE9BC0005F7E2 /* RemoteSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821EDF21C5BE9BC0005F7E2 /* RemoteSender.m */; };
-		1821EDF71C5BEB790005F7E2 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821EDF61C5BEB790005F7E2 /* GCDAsyncSocket.m */; };
+		182FC0231C5ED4640017CF7B /* VgcBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0161C5ED4640017CF7B /* VgcBrowser.swift */; };
+		182FC0241C5ED4640017CF7B /* VgcCentralPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0171C5ED4640017CF7B /* VgcCentralPublisher.swift */; };
+		182FC0251C5ED4640017CF7B /* VgcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0181C5ED4640017CF7B /* VgcController.swift */; };
+		182FC0261C5ED4640017CF7B /* VgcElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0191C5ED4640017CF7B /* VgcElements.swift */; };
+		182FC0271C5ED4640017CF7B /* VgcIcadePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC01A1C5ED4640017CF7B /* VgcIcadePeripheral.swift */; };
+		182FC0281C5ED4640017CF7B /* VgcLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC01B1C5ED4640017CF7B /* VgcLogger.swift */; };
+		182FC0291C5ED4640017CF7B /* VgcManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC01C1C5ED4640017CF7B /* VgcManager.swift */; };
+		182FC02A1C5ED4640017CF7B /* VgcMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC01D1C5ED4640017CF7B /* VgcMotion.swift */; };
+		182FC02B1C5ED4640017CF7B /* VgcPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC01E1C5ED4640017CF7B /* VgcPeripheral.swift */; };
+		182FC02C1C5ED4640017CF7B /* VgcPeripheralSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC01F1C5ED4640017CF7B /* VgcPeripheralSetup.swift */; };
+		182FC02D1C5ED4640017CF7B /* VgcStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0201C5ED4640017CF7B /* VgcStreamer.swift */; };
+		182FC02E1C5ED4640017CF7B /* VgcWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0211C5ED4640017CF7B /* VgcWatch.swift */; };
+		182FC02F1C5ED4640017CF7B /* VgcWatchConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0221C5ED4640017CF7B /* VgcWatchConnectivity.swift */; };
+		182FC0311C5EDC350017CF7B /* CustomMappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0301C5EDC350017CF7B /* CustomMappings.swift */; };
+		182FC0331C5EDCDD0017CF7B /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0321C5EDCDD0017CF7B /* CustomElements.swift */; };
+		182FC0371C5EE0980017CF7B /* DialControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0361C5EE0980017CF7B /* DialControllerView.swift */; };
+		182FC03A1C5EF46F0017CF7B /* Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC0391C5EF46F0017CF7B /* Angle.swift */; };
 		186BD9F41C5E922900127248 /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186BD9F31C5E922900127248 /* MainMenuVC.swift */; };
 		186BD9F61C5E925400127248 /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186BD9F51C5E925400127248 /* GameVC.swift */; };
 /* End PBXBuildFile section */
@@ -27,10 +42,23 @@
 		18158EF21C5B1A8B00E300B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18158EF41C5B1A8B00E300B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1821EDEC1C5BDF160005F7E2 /* ObjC-Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridge.h"; sourceTree = "<group>"; };
-		1821EDF11C5BE9BC0005F7E2 /* RemoteSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteSender.h; sourceTree = "<group>"; };
-		1821EDF21C5BE9BC0005F7E2 /* RemoteSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteSender.m; sourceTree = "<group>"; };
-		1821EDF51C5BEB790005F7E2 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
-		1821EDF61C5BEB790005F7E2 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		182FC0161C5ED4640017CF7B /* VgcBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcBrowser.swift; sourceTree = "<group>"; };
+		182FC0171C5ED4640017CF7B /* VgcCentralPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcCentralPublisher.swift; sourceTree = "<group>"; };
+		182FC0181C5ED4640017CF7B /* VgcController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcController.swift; sourceTree = "<group>"; };
+		182FC0191C5ED4640017CF7B /* VgcElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcElements.swift; sourceTree = "<group>"; };
+		182FC01A1C5ED4640017CF7B /* VgcIcadePeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcIcadePeripheral.swift; sourceTree = "<group>"; };
+		182FC01B1C5ED4640017CF7B /* VgcLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcLogger.swift; sourceTree = "<group>"; };
+		182FC01C1C5ED4640017CF7B /* VgcManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcManager.swift; sourceTree = "<group>"; };
+		182FC01D1C5ED4640017CF7B /* VgcMotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcMotion.swift; sourceTree = "<group>"; };
+		182FC01E1C5ED4640017CF7B /* VgcPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcPeripheral.swift; sourceTree = "<group>"; };
+		182FC01F1C5ED4640017CF7B /* VgcPeripheralSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcPeripheralSetup.swift; sourceTree = "<group>"; };
+		182FC0201C5ED4640017CF7B /* VgcStreamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcStreamer.swift; sourceTree = "<group>"; };
+		182FC0211C5ED4640017CF7B /* VgcWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcWatch.swift; sourceTree = "<group>"; };
+		182FC0221C5ED4640017CF7B /* VgcWatchConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcWatchConnectivity.swift; sourceTree = "<group>"; };
+		182FC0301C5EDC350017CF7B /* CustomMappings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMappings.swift; sourceTree = "<group>"; };
+		182FC0321C5EDCDD0017CF7B /* CustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
+		182FC0361C5EE0980017CF7B /* DialControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialControllerView.swift; sourceTree = "<group>"; };
+		182FC0391C5EF46F0017CF7B /* Angle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Angle.swift; sourceTree = "<group>"; };
 		186BD9F31C5E922900127248 /* MainMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuVC.swift; sourceTree = "<group>"; };
 		186BD9F51C5E925400127248 /* GameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,9 +93,11 @@
 		18158EE71C5B1A8B00E300B6 /* iOS_App */ = {
 			isa = PBXGroup;
 			children = (
+				182FC0391C5EF46F0017CF7B /* Angle.swift */,
+				182FC0381C5EE09D0017CF7B /* ControllerElements */,
+				182FC0151C5ED4150017CF7B /* VGC */,
 				186BD9F31C5E922900127248 /* MainMenuVC.swift */,
 				186BD9F51C5E925400127248 /* GameVC.swift */,
-				1821EDF41C5BEB440005F7E2 /* RemoteSender */,
 				18158EE81C5B1A8B00E300B6 /* AppDelegate.swift */,
 				18158EEA1C5B1A8B00E300B6 /* ViewController.swift */,
 				18158EEC1C5B1A8B00E300B6 /* Main.storyboard */,
@@ -79,15 +109,34 @@
 			path = iOS_App;
 			sourceTree = "<group>";
 		};
-		1821EDF41C5BEB440005F7E2 /* RemoteSender */ = {
+		182FC0151C5ED4150017CF7B /* VGC */ = {
 			isa = PBXGroup;
 			children = (
-				1821EDF51C5BEB790005F7E2 /* GCDAsyncSocket.h */,
-				1821EDF61C5BEB790005F7E2 /* GCDAsyncSocket.m */,
-				1821EDF11C5BE9BC0005F7E2 /* RemoteSender.h */,
-				1821EDF21C5BE9BC0005F7E2 /* RemoteSender.m */,
+				182FC0161C5ED4640017CF7B /* VgcBrowser.swift */,
+				182FC0171C5ED4640017CF7B /* VgcCentralPublisher.swift */,
+				182FC0181C5ED4640017CF7B /* VgcController.swift */,
+				182FC0191C5ED4640017CF7B /* VgcElements.swift */,
+				182FC01A1C5ED4640017CF7B /* VgcIcadePeripheral.swift */,
+				182FC01B1C5ED4640017CF7B /* VgcLogger.swift */,
+				182FC01C1C5ED4640017CF7B /* VgcManager.swift */,
+				182FC01D1C5ED4640017CF7B /* VgcMotion.swift */,
+				182FC01E1C5ED4640017CF7B /* VgcPeripheral.swift */,
+				182FC01F1C5ED4640017CF7B /* VgcPeripheralSetup.swift */,
+				182FC0201C5ED4640017CF7B /* VgcStreamer.swift */,
+				182FC0211C5ED4640017CF7B /* VgcWatch.swift */,
+				182FC0221C5ED4640017CF7B /* VgcWatchConnectivity.swift */,
+				182FC0301C5EDC350017CF7B /* CustomMappings.swift */,
+				182FC0321C5EDCDD0017CF7B /* CustomElements.swift */,
 			);
-			name = RemoteSender;
+			name = VGC;
+			sourceTree = "<group>";
+		};
+		182FC0381C5EE09D0017CF7B /* ControllerElements */ = {
+			isa = PBXGroup;
+			children = (
+				182FC0361C5EE0980017CF7B /* DialControllerView.swift */,
+			);
+			name = ControllerElements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,12 +210,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1821EDF71C5BEB790005F7E2 /* GCDAsyncSocket.m in Sources */,
+				182FC02E1C5ED4640017CF7B /* VgcWatch.swift in Sources */,
 				186BD9F41C5E922900127248 /* MainMenuVC.swift in Sources */,
+				182FC0291C5ED4640017CF7B /* VgcManager.swift in Sources */,
+				182FC02D1C5ED4640017CF7B /* VgcStreamer.swift in Sources */,
+				182FC0271C5ED4640017CF7B /* VgcIcadePeripheral.swift in Sources */,
+				182FC0281C5ED4640017CF7B /* VgcLogger.swift in Sources */,
+				182FC0261C5ED4640017CF7B /* VgcElements.swift in Sources */,
+				182FC02F1C5ED4640017CF7B /* VgcWatchConnectivity.swift in Sources */,
+				182FC0251C5ED4640017CF7B /* VgcController.swift in Sources */,
 				18158EEB1C5B1A8B00E300B6 /* ViewController.swift in Sources */,
-				1821EDF31C5BE9BC0005F7E2 /* RemoteSender.m in Sources */,
+				182FC0331C5EDCDD0017CF7B /* CustomElements.swift in Sources */,
 				186BD9F61C5E925400127248 /* GameVC.swift in Sources */,
+				182FC02A1C5ED4640017CF7B /* VgcMotion.swift in Sources */,
 				18158EE91C5B1A8B00E300B6 /* AppDelegate.swift in Sources */,
+				182FC02C1C5ED4640017CF7B /* VgcPeripheralSetup.swift in Sources */,
+				182FC0231C5ED4640017CF7B /* VgcBrowser.swift in Sources */,
+				182FC03A1C5EF46F0017CF7B /* Angle.swift in Sources */,
+				182FC0311C5EDC350017CF7B /* CustomMappings.swift in Sources */,
+				182FC0371C5EE0980017CF7B /* DialControllerView.swift in Sources */,
+				182FC0241C5ED4640017CF7B /* VgcCentralPublisher.swift in Sources */,
+				182FC02B1C5ED4640017CF7B /* VgcPeripheral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
